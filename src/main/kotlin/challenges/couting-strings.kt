@@ -1,5 +1,3 @@
-package challenges
-
 import java.io.*
 import java.math.*
 import java.security.*
@@ -18,37 +16,37 @@ import kotlin.jvm.internal.*
 import kotlin.ranges.*
 import kotlin.sequences.*
 import kotlin.text.*
+
 /*
- * Complete the 'countingValleys' function below.
+ * Complete the 'repeatedString' function below.
  *
- * The function is expected to return an INTEGER.
+ * The function is expected to return a LONG_INTEGER.
  * The function accepts following parameters:
- *  1. INTEGER steps
- *  2. STRING path
+ *  1. STRING s
+ *  2. LONG_INTEGER n
  */
-fun countingValleys(steps: Int, path: String): Int {
+
+fun repeatedString(s: String, n: Long): Long {
     // Write your code here
-    var valleyCount:Int=0;
-    var tempCount:Int=0;
-    var mountainCount:Int=0;
-    for(step in 0..steps-1){
-        if(path.get(step)=='D'){
-            tempCount+=1;
-        }else{
-            mountainCount+=1;
-            if( tempCount==mountainCount){
-                valleyCount+=1;
-                //reset values
-                tempCount=0;
-                mountainCount=0;
-            }
+    var repeatCount:Long=0;
+    for(count in 0..s.length-1){
+        if(s[count]=='a'){
+            repeatCount+=1;
         }
     }
-    return valleyCount;
+    var unitCount=repeatCount/s.length;
+    var rem=n%s.length;
+    val sRemainingCount = s.substring(0, rem.toInt())
+    val aInRemains = sRemainingCount.length - sRemainingCount.replace("a", "").length
+    return (n/s.length * repeatCount) + aInRemains
 }
+
 fun main(args: Array<String>) {
-    val steps = readLine()!!.trim().toInt()
-    val path = readLine()!!
-    val result = countingValleys(steps, path)
+    val s = readLine()!!
+
+    val n = readLine()!!.trim().toLong()
+
+    val result = repeatedString(s, n)
+
     println(result)
 }

@@ -30,19 +30,19 @@ fun hourglassSum(arr: Array<Array<Int>>): Int {
         Array<Int>(5) { 0 }
     }
 
-    for(i in 0 until arr.size){
-        for(j in 0 until arr[i].size){
-            if(i<4&&j<4){
-                sumArrayData[i][j]=
-                    arr[i][j]+arr[i][j+1]+arr[i][j+2]+ arr[i+1][j+1]+arr[i+2][j]+ arr             [i+2][j+1]+arr[i+2][j+2];
+    for (i in 0 until arr.size) {
+        for (j in 0 until arr[i].size) {
+            if (i < 4 && j < 4) {
+                sumArrayData[i][j] =
+                    arr[i][j] + arr[i][j + 1] + arr[i][j + 2] + arr[i + 1][j + 1] + arr[i + 2][j] + arr[i + 2][j + 1] + arr[i + 2][j + 2];
             }
         }
     }
-    var maxSum:Int=sumArrayData[0][0];
-    for(i in 0..3){
-        for (j in 0..3){
-            if(sumArrayData[i][j]>=maxSum){
-                maxSum=sumArrayData[i][j]
+    var maxSum: Int = sumArrayData[0][0];
+    for (i in 0..3) {
+        for (j in 0..3) {
+            if (sumArrayData[i][j] >= maxSum) {
+                maxSum = sumArrayData[i][j]
             }
         }
     }
@@ -54,7 +54,7 @@ fun main(args: Array<String>) {
     val arr = Array<Array<Int>>(6, { Array<Int>(6, { 0 }) })
 
     for (i in 0 until 6) {
-        arr[i] = readLine()!!.trimEnd().split(" ").map{ it.toInt() }.toTypedArray()
+        arr[i] = readLine()!!.trimEnd().split(" ").map { it.toInt() }.toTypedArray()
     }
 
     val result = hourglassSum(arr)

@@ -29,26 +29,25 @@ import kotlin.text.*
  */
 
 fun luckBalance(k: Int, contests: Array<Array<Int>>): Int {
-    // Write your code here
-    var sum: Int = 0
-    //count to check the iteration of k as k is increased
-    //if contests[i][1]==1
-    var count: Int = 0
-    val sortedArray = contests.sortedByDescending { it.first() }
-    for (i in sortedArray.indices) {
-        if (sortedArray[i][1] == 1) {
-            if (count < k) {
-                sum += sortedArray[i][0];
+    var sum: Int = 0 //initialize a variable `sum` to keep track of total luck obtained
+    var count: Int = 0 //initialize a variable `count` to keep track of the number of important contests lost
+    val sortedArray =
+        contests.sortedByDescending { it.first() } //sort the 2D array in descending order based on the first element of each sub-array
+    for (i in sortedArray.indices) { //iterate through the sorted array
+        if (sortedArray[i][1] == 1) { //if the contest is important
+            if (count < k) { //if the number of important contests lost so far is less than k
+                sum += sortedArray[i][0]; //add the luck value of the contest to sum
                 count++
-            } else {
-                sum -= sortedArray[i][0];
+            } else { //if the number of important contests lost so far is greater than or equal to k
+                sum -= sortedArray[i][0]; //subtract the luck value of the contest from sum
             }
-        } else {
-            sum += sortedArray[i][0];
+        } else { //if the contest is not important
+            sum += sortedArray[i][0]; //add the luck value of the contest to sum
         }
     }
-    return sum;
+    return sum; //return the total luck value
 }
+
 
 fun main(args: Array<String>) {
     val first_multiple_input = readLine()!!.trimEnd().split(" ")
